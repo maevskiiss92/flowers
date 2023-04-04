@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+{% block content %}
+
+
+<div class="{{item}}" style="display: grid;
+        grid-template-columns: repeat(3, 1fr);">
+{% for item in cart %}
+
+<div class="{{flower}}" style="text-align:center;width:90%">
+    <p>{{item.flower}}</p>
+    В количестве:
+
+    <input type="hidden" name="flower" value="{{item.flower}}" form="edit_cart">
+    <input type="text" name="quantity" value="{{item.quantity}}" form="edit_cart">
+
+    <p>{{item.total_price}}</p>
+
+
+</div>
+{% endfor %}
+
+</div>
+
+{% if cart.is_not_empty %}
+<input type="submit" value="Изменить" form="edit_cart" style="margin: 0 auto;
+  display: block;">
+    <form action="" method="post" id="edit_cart">
+        {% csrf_token %}
+    </form>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="buy" id="buy">
+    <input type="submit" value="Buy" style="margin: 0 auto;
+  display: block;">
+</form>
+{% endif %}
+{% endblock content %}

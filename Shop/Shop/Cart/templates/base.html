@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин "Соцветие"</title>
+    <style type="text/css">
+        html {
+            height:100%;
+        }
+        body {
+            padding-bottom:20px;
+            height:100%;
+            background:linear-gradient(0deg, rgba(247,255,254,1) 0%, rgba(188,212,208,1) 33%, rgba(0,212,255,1) 100%) no-repeat;
+            background-attachment: fixed;
+            position:relative;
+        }
+        #header {
+
+        }
+        #main_head {
+        color:navy;
+        font-style:italic;
+        text-align:center;
+        }
+        footer {
+        position:fixed;
+        bottom:0;
+        width:100%;
+        height:20px;
+        text-align: right;
+        }
+        #sidebar {
+        font-size:24px;
+        width:15%;
+        margin-right:auto;
+        position: fixed;
+        }
+        #sidebar a {
+        text-decoration: none;
+        color: white;
+        }
+        #sidebar a:hover{
+        color:black;
+        padding-left:25px;
+        }
+        #sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        }
+        #sidebar ul li:hover {
+        transform:scale(1.2)
+        }
+        #content {
+        width:85%;
+        height:80%;
+        margin-bottom:auto;
+        margin-left:auto;
+        position: relative;
+        }
+        #container {
+
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <h1 id="main_head">Магазин "Соцветие"</h1>
+</div>
+<div>
+<div id="container"/>
+    <div id="sidebar">
+        <ul>
+            <li><a href="{%url 'catalog'%}">Каталог</a></li>
+            <li><a href="{%url 'cart'%}">Корзина</a></li>
+            <li><a href="{%url 'login'%}">Авторизация</a></li>
+            <li><a href="{%url 'register'%}">Регистрация</a></li>
+        </ul>
+
+    </div>
+    <div id="content">
+    {% block content %}
+    {% endblock content %}
+    </div>
+
+</div>
+<footer>Stormnet Technologies, 2023</footer>
+<div style="height:25px;"></div>
+</body>
+</html>

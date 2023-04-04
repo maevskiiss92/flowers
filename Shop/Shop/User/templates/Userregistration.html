@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input name="name" type="text" placeholder="name" required>
+        <input name="phone" type="text" placeholder="phone" required>
+        <input name="password" type="password" placeholder="password" required>
+        <input name="referal" type="text" placeholder="referal">
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+{% endblock content %}

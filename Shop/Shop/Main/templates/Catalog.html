@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+
+{% block content %}
+<div class="header">
+    <div class="username" style="color:navy;font-style:italic;text-align:center">
+        {% if request.user.is_authenticated %}
+        Привет, {{request.user.username}}
+        {% endif %}
+    </div>
+    <div class="cart" style="text-align:right;">
+     <a href="{% url 'cart' %}">Корзина ({{cart.total_quantity}} товаров, цена {{cart.total_price}})</a>
+        </div>
+</div>
+<div class="class">
+
+</div>
+<div style="display: grid;
+        grid-template-columns: repeat(3, 1fr);">
+    {% for flower in flowers %}
+    <div style="text-align:center;width:90%">
+        <a href="{% url 'detail' slug=flower.slug %}"><p>"{{flower.name}}"</p></a>
+
+        <img src="{{flower.photo.url}}" style="width:300px;height:300px">
+
+        <p>{{flower.description|truncatechars:20}}</p>
+        <p>Доступное количество: {{flower.quantity}}</p>
+        <p>Цена: {{flower.price}}</p>
+        <button onclick="getElementById('{{flower.name}}1').value = Number(getElementById('{{flower.name}}1').value) - Number(1)">-</button>
+        <input id="{{flower.name}}1" type="text" value="0" form="{{flower.name}}" name="quantity">
+        <button onclick="getElementById('{{flower.name}}1').value = Number(getElementById('{{flower.name}}1').value) + Number(1)">+</button>
+        <form action="" method="POST" id="{{flower.name}}" name="{{flower.name}}">
+            {% csrf_token %}
+            <input type="hidden" value="{{flower.name}}" name="flower">
+            <input type="submit" value="Добавить">
+        </form>
+    </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock content %}

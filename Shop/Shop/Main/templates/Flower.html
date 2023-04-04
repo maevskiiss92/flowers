@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align:center;">
+    <p>{{flower.name}}</p>
+    <img src="{{flower.photo.url}}" style="width:300px;height:300px;">
+    <p>{{flower.description}}</p>
+</div>
+{% endblock content %}
